@@ -30,6 +30,10 @@ import Paginations from '@/views/base/Paginations'
 import Popovers from '@/views/base/Popovers'
 import ProgressBars from '@/views/base/ProgressBars'
 import Tooltips from '@/views/base/Tooltips'
+import stories from '@/views/base/stories'
+import finishedstory from '@/views/base/finishedstory'
+import analytics from '@/views/base/analytics'
+import progress from '@/views/base/progress'
 
 // Views - Buttons
 import StandardButtons from '@/views/buttons/StandardButtons'
@@ -53,6 +57,7 @@ import Page404 from '@/views/pages/Page404'
 import Page500 from '@/views/pages/Page500'
 import Login from '@/views/pages/Login'
 import Register from '@/views/pages/Register'
+import kiarash from '@/views/pages/kiarash'
 
 Vue.use(Router)
 
@@ -63,7 +68,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/dashboard',
+      redirect: '/base/stories',
       name: 'Home',
       component: DefaultContainer,
       children: [
@@ -189,6 +194,26 @@ export default new Router({
               path: 'tooltips',
               name: 'Tooltips',
               component: Tooltips
+            },
+            {
+              path: 'stories',
+              name: 'stories',
+              component: stories
+            },
+            {
+              path: 'finishedstory',
+              name: 'finishedstory',
+              component: finishedstory
+            },
+            {
+              path: 'analytics',
+              name: 'analytics',
+              component: analytics
+            },
+            {
+              path: 'progress',
+              name: 'progress',
+              component: progress
             }
           ]
         },
@@ -306,7 +331,12 @@ export default new Router({
           path: 'register',
           name: 'Register',
           component: Register
-        }
+        },
+        {
+          path: 'kiarash',
+          name: 'kiarash',
+          component: kiarash
+        },
       ]
     }
   ]

@@ -7,15 +7,14 @@
         </b-card>
       </b-col>
       <b-col sm="6" md="4">
-        <b-card show-footer>
+        <b-card show-footer >
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-          <div slot="footer">Card footer</div>
+          <div style="background-color: yellow" slot="footer">Card footer</div>
         </b-card>
       </b-col>
       <b-col sm="6" md="4">
         <b-card header="<i class='fa fa-check'></i> Card with icon">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-        </b-card>
+icon        </b-card>
       </b-col>
       <b-col sm="6" md="4">
         <b-card>
@@ -62,7 +61,7 @@
       </b-col>
       <b-col sm="6" md="4">
         <b-card header="Card outline success" border-variant="success">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+              fdsfsaf
         </b-card>
       </b-col>
       <b-col sm="6" md="4">

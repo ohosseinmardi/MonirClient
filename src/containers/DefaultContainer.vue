@@ -3,29 +3,33 @@
     <AppHeader fixed>
       <SidebarToggler class="d-lg-none" display="md" mobile />
       <b-link class="navbar-brand" to="#">
-        <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
-        <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
+        <img class="navbar-brand-full" src="http://story.monir.media/images/monirlogo.png" width="89" height="25" alt="Monir">
+        <img class="navbar-brand-minimized" src="http://story.monir.media/images/monirlogosmall.png" width="30" height="30" alt="Monir">
       </b-link>
       <SidebarToggler class="d-md-down-none" display="lg" />
-      <b-navbar-nav class="d-md-down-none">
-        <b-nav-item class="px-3">Dashboard</b-nav-item>
-        <b-nav-item class="px-3">Users</b-nav-item>
-        <b-nav-item class="px-3">Settings</b-nav-item>
-      </b-navbar-nav>
+      <!--<b-navbar-nav class="d-md-down-none">-->
+        <!--<b-nav-item class="px-3">Dashboard</b-nav-item>-->
+        <!--<b-nav-item class="px-3">Users</b-nav-item>-->
+        <!--<b-nav-item class="px-3">Settings</b-nav-item>-->
+      <!--</b-navbar-nav>-->
       <b-navbar-nav class="ml-auto">
         <b-nav-item class="d-md-down-none">
-          <i class="icon-bell"></i>
-          <b-badge pill variant="danger">5</b-badge>
+            <i class="icon-magnifier icons font-2xl d-block mt-4" style="float: left; margin: 15px"></i>
+            <p style="float: left; margin-right: 35px;margin-top: 25px;">Search...</p>
         </b-nav-item>
-        <b-nav-item class="d-md-down-none">
-          <i class="icon-list"></i>
+        <b-nav-item class="d-md-down-none" style="padding-right: 30px">
+          <i class="cui-bell icons font-2xl d-block mt-4"style="float: left; margin: 15px"></i>
         </b-nav-item>
-        <b-nav-item class="d-md-down-none">
-          <i class="icon-location-pin"></i>
-        </b-nav-item>
-        <DefaultHeaderDropdownAccnt/>
+
+        <!--<b-nav-item class="d-md-down-none">-->
+          <!--<i class="icon-list"></i>-->
+        <!--</b-nav-item>-->
+        <!--<b-nav-item class="d-md-down-none">-->
+          <!--<i class="icon-location-pin"></i>-->
+        <!--</b-nav-item>-->
+
       </b-navbar-nav>
-      <AsideToggler class="d-none d-lg-block" />
+      <!--<AsideToggler class="d-none d-lg-block" />-->
       <!--<AsideToggler class="d-lg-none" mobile />-->
     </AppHeader>
     <div class="app-body">
@@ -37,7 +41,6 @@
         <SidebarMinimizer/>
       </AppSidebar>
       <main class="main">
-        <breadcrumb :list="list"/>
         <div class="container-fluid">
           <router-view></router-view>
         </div>
@@ -47,9 +50,6 @@
         <DafaultAside/>
       </AppAside>
     </div>
-    <TheFooter>
-      <!--footer-->
-    </TheFooter>
   </div>
 </template>
 
