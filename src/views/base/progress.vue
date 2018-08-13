@@ -6,13 +6,13 @@
         <div style="float:left;">
           <h1>{{header}}</h1>
         </div>
-        <div style="float:right; margin-right: 30px;">
-          <b-col class="text-center mt-2" style="padding-right: 0px; padding-left: 10px">
-            <b-button variant="secondary">
-              <i class="cui-speech"></i>
-            </b-button>
-          </b-col>
-        </div>
+        <!--<div style="float:right; margin-right: 30px;">-->
+          <!--<b-col class="text-center mt-2" style="padding-right: 0px; padding-left: 10px">-->
+            <!--<b-button variant="secondary">-->
+              <!--<i class="cui-speech"></i>-->
+            <!--</b-button>-->
+          <!--</b-col>-->
+        <!--</div>-->
       </span>
       </div>
     </div>
@@ -47,41 +47,65 @@
     <p style="text-align: center;" >
       Feel free to come back to check on the status of your story.
     </p>
-    <img style="height: 60px; display:block; margin: 0 auto" src="http://gifimage.net/wp-content/uploads/2017/08/loading-gif-transparent-10.gif"/>
   </div>
 </template>
 
 <script>
   import SimpleLineIcons from "../icons/SimpleLineIcons.vue";
+  import db from '/Users/user/WebstormProjects/CoreUI-Vue/src/views/pages/firebaseInit.js';
+
 
   export default {
     components: {SimpleLineIcons},
     name: 'progress',
     data(){
       return {
-        header: 'Fanny IPA',
+        header: null,
         copywriter:
           {
-            name: 'Samual Spencer',
-            email: 'sasp@monir.media',
-            image: 'img/avatars/8.jpg'
+            name: null,
+            email: null,
+            image: null
           }
         ,
         curator:
           {
-            name: 'Abigail Enno',
-            email: 'anhu@monir.media',
-            image: 'img/avatars/5.jpg'
+            name: null,
+            email: null,
+            image: null
           }
         ,
         progress:
           {
-            pages_complete: '4',
-            pages_total: '10',
-            est_date: '24',
-            est_month: 'June'
+            pages_complete: null,
+            pages_total: null,
+            est_date: null,
+            est_month: null
           }
       }
+    },
+    beforeRouteEnter (to, from, next) {
+      db.collection('Users').get().then
+      (querySnapshot => {
+        querySnapshot.forEach(doc =>{
+          if(doc.id == to.params.story_id) {
+            next(vm => {
+              vm.header = doc.data().Title,
+              vm.copywriter.name = doc.data().copyname
+              vm.copywriter.email = doc.data().copyemail
+              vm.copywriter.image = doc.data().copyimg
+              vm.curator.name = doc.data().curatorname
+              vm.curator.email = doc.data().curatoremail
+              vm.curator.image = doc.data().curatorimg
+              vm.progress.pages_complete = doc.data().completedpages
+              vm.progress.pages_total = doc.data().totalpages
+              vm.progress.est_date = doc.data().estday
+              vm.progress.est_month = doc.data().estmonth
+            next();
+          })
+          }
+        })
+      })
     }
   }
 </script>

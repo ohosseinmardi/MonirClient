@@ -8,18 +8,30 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import router from './router'
+import firebase from 'firebase'
+import firebaseInit from '/Users/user/WebstormProjects/CoreUI-Vue/src/views/pages/firebaseInit.js';
+
+
 
 // todo
 // cssVars()
 
-Vue.use(BootstrapVue)
+let app;
+firebase.auth().onAuthStateChanged(user =>{
+  if (!app){
+    app=
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: {
-    App
+    Vue.use(BootstrapVue)
+
+    /* eslint-disable no-new */
+    new Vue({
+      el: '#app',
+      router,
+      template: '<App/>',
+      components: {
+        App
+      }
+    })
+
   }
-})
+});

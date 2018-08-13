@@ -3,55 +3,12 @@
     <div style="padding-bottom: 30px">
       <div class="header"><h1>{{header}}</h1></div>
     </div>
-    <div>
-      <b-card>
-        <b-row>
-          <b-col sm="5">
-            <h4 id="traffic" class="card-title mb-0">Engagement</h4>
-            <div class="small text-muted">June 2018</div>
-          </b-col>
-          <b-col sm="7" class="d-none d-md-block">
-            <b-button type="button" variant="primary" class="float-right"><i class="icon-cloud-download"></i></b-button>
-            <b-button-toolbar class="float-right" aria-label="Toolbar with buttons group">
-              <b-form-radio-group class="mr-3" id="radiosBtn" buttons button-variant="outline-secondary" v-model="selected" name="radiosBtn">
-                <b-form-radio class="mx-0" value="Day">Day</b-form-radio>
-                <b-form-radio class="mx-0" value="Month">Month</b-form-radio>
-                <b-form-radio class="mx-0" value="Year">Year</b-form-radio>
-              </b-form-radio-group>
-            </b-button-toolbar>
-          </b-col>
-        </b-row>
-        <main-chart-example chartId="main-chart-01" class="chart-wrapper" style="height:300px;margin-top:40px;" height="300"></main-chart-example>
-        <div slot="footer">
-          <b-row class="text-center">
-            <b-col class="mb-sm-2 mb-0">
-              <div class="text-muted">Visits</div>
-              <strong>29.703 Users (40%)</strong>
-              <b-progress height={} class="progress-xs mt-2" :precision="1" variant="success" :value="40"></b-progress>
-            </b-col>
-            <b-col class="mb-sm-2 mb-0 d-md-down-none">
-              <div class="text-muted">Unique</div>
-              <strong>24.093 Users (20%)</strong>
-              <b-progress height={} class="progress-xs mt-2" :precision="1" variant="info" :value="20"></b-progress>
-            </b-col>
-            <b-col class="mb-sm-2 mb-0">
-              <div class="text-muted">Pageviews</div>
-              <strong>78.706 Views (60%)</strong>
-              <b-progress height={} class="progress-xs mt-2" :precision="1" variant="warning" :value="60"></b-progress>
-            </b-col>
-            <b-col class="mb-sm-2 mb-0">
-              <div class="text-muted">New Users</div>
-              <strong>22.123 Users (80%)</strong>
-              <b-progress height={} class="progress-xs mt-2" :precision="1" variant="danger" :value="80"></b-progress>
-            </b-col>
-            <b-col class="mb-sm-2 mb-0 d-md-down-none">
-              <div class="text-muted">Bounce Rate</div>
-              <strong>Average Rate (40.15%)</strong>
-              <b-progress height={} class="progress-xs mt-2" :precision="1" :value="40"></b-progress>
-            </b-col>
-          </b-row>
-        </div>
-      </b-card>
+    <div style="display: block; margin: 0 auto">
+      <h1 style="text-align: center; padding-top: 40px; color: #585858">Coming Soon</h1>
+      <p style="text-align: center; margin-bottom: 1px; color: #696969; padding-bottom: 50px" >
+        Track usage across platforms and see which stories have the biggest reach.<br>Understand your audience through A/B Testing.
+      </p>
+      <img style="height: 60px; display:block; margin: 0 auto" src="http://gifimage.net/wp-content/uploads/2017/08/loading-gif-transparent-10.gif"/>
     </div>
   </div>
 </template>

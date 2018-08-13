@@ -9,7 +9,7 @@ export default {
     },
     {
       name: 'New Story',
-      url: '/theme/colors',
+      url: '/base/chat',
       icon: 'icon-plus'
     },
     {

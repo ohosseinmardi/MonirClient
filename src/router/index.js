@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import firebase from 'firebase'
 
 // Containers
 import DefaultContainer from '@/containers/DefaultContainer'
@@ -34,6 +35,8 @@ import stories from '@/views/base/stories'
 import finishedstory from '@/views/base/finishedstory'
 import analytics from '@/views/base/analytics'
 import progress from '@/views/base/progress'
+import chat from '@/views/base/chat'
+import testdb from '@/views/base/testdb'
 
 // Views - Buttons
 import StandardButtons from '@/views/buttons/StandardButtons'
@@ -61,7 +64,7 @@ import kiarash from '@/views/pages/kiarash'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   mode: 'hash', // Demo is living in GitHub.io, so required!
   linkActiveClass: 'open active',
   scrollBehavior: () => ({ y: 0 }),
@@ -198,22 +201,50 @@ export default new Router({
             {
               path: 'stories',
               name: 'stories',
-              component: stories
+              component: stories,
+              meta:{
+                requiresAuth: true
+              }
             },
             {
-              path: 'finishedstory',
+              path: 'finishedstory/:story_id',
               name: 'finishedstory',
-              component: finishedstory
+              component: finishedstory,
+              meta:{
+                requiresAuth: true
+              }
             },
             {
               path: 'analytics',
               name: 'analytics',
-              component: analytics
+              component: analytics,
+              meta:{
+                requiresAuth: true
+              }
             },
             {
-              path: 'progress',
+              path: 'progress/:story_id',
               name: 'progress',
-              component: progress
+              component: progress,
+              meta:{
+                requiresAuth: true
+              }
+            },
+            {
+              path: 'chat',
+              name: 'chat',
+              component: chat,
+              meta:{
+                requiresAuth: true
+              }
+            },
+            {
+              path: 'testdb',
+              name: 'testdb',
+              component: testdb,
+              meta:{
+                requiresAuth: true
+              }
             }
           ]
         },
@@ -325,12 +356,18 @@ export default new Router({
         {
           path: 'login',
           name: 'Login',
-          component: Login
+          component: Login,
+          meta:{
+            requiresGuest: true
+          }
         },
         {
           path: 'register',
           name: 'Register',
-          component: Register
+          component: Register,
+          meta:{
+            requiresGuest: true
+          }
         },
         {
           path: 'kiarash',
@@ -341,3 +378,39 @@ export default new Router({
     }
   ]
 })
+
+//nav gaurds
+
+router.beforeEach((to, from , next)=>{
+  //check for required auth guard
+  if(to.matched.some(record =>record.meta.requiresAuth)){
+    //check if not logged in
+    if (!firebase.auth().currentUser){
+      next({
+        path:'/pages/login',
+        query:{
+          redirect: to.fullPath
+        }
+      })
+    }else{
+      next();
+    }
+  }else if(to.matched.some(record => record.meta.requiresGuest)){
+    //check if not logged in
+    if (firebase.auth().currentUser){
+      next({
+        path:'/',
+        query:{
+          redirect: to.fullPath
+        }
+      })
+    }else{
+      next();
+    }
+  }else{
+    next();
+  }
+});
+
+export default router;
+

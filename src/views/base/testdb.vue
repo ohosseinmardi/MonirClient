@@ -6,16 +6,7 @@
       </div>
     </div>
     <b-row>
-      <div style="display: block; margin: 0 auto" v-if="stories.length == 0">
-        <div>
-          <h3 style="text-align: center; padding-top: 40px; color: #585858">No stories created yet</h3>
-          <p style="text-align: center; margin-bottom: 1px; color: #696969; padding-bottom: 50px" >
-            Have a chat with Monir and create your first story.
-          </p>
-        </div>
-      </div>
-
-      <div v-else="" v-for="item in stories">
+      <div v-for="item in stories">
         <b-card :border-variant="item.color" class = "shadow">
           <div slot="footer">
             <p class="title">{{item.title}}</p>
@@ -37,10 +28,10 @@
 
 
   export default {
-    name: 'stories',
+    name: 'testdb',
     data() {
       return {
-        header: 'All Stories',
+        header: 'Test DB',
         stories: [],
         storyhtml: null
       }
@@ -48,22 +39,20 @@
     created(){
       db.collection('Users').get().then
       (querySnapshot => {
-        querySnapshot.forEach(doc => {
-          if (doc.id != "email") {
-            const data = {
-              'id': doc.id,
-              'title': doc.data().Title,
-              'date': doc.data().date,
-              'status': doc.data().status,
-              'img': doc.data().img,
-              'color': doc.data().color,
-              'link': doc.data().link
-            }
+        querySnapshot.forEach(doc =>{
+          const data = {
+            'id': doc.id,
+            'title': doc.data().Title,
+            'date': doc.data().date,
+            'status': doc.data().status,
+            'img': doc.data().img,
+            'color': doc.data().color,
+            'link': doc.data().link
+          }
           this.stories.push(data)
-        }
         })
       })
-    }
+      }
   }
 </script>
 

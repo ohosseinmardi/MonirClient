@@ -1,51 +1,98 @@
 <template>
   <div class="animated fadeIn">
-    <div style="padding-bottom: 30px">
+    <div style="padding-bottom: 5px">
       <span class="underline">
         <div style="float:left;">
           <h1>{{header}}</h1>
         </div>
         <div style="float:right; margin-right: 30px;">
-          <b-col class="text-center mt-2" style="padding-right: 0px; padding-left: 10px">
-            <b-button variant="secondary">
-              Export
-            </b-button>
+          <b-col class="text-center mt-2" style="padding-right: 0px; padding-left: 10px; padding-bottom: 5px;">
+            <!--<b-button v-on:click="showAlert" variant="secondary">-->
+              <!--Export-->
+            <!--</b-button>-->
+            <div class="col-md-12">
+              <div class="input-group">
+              <input type="email" id="input2-group1" name="input2-group1" class="form-control" placeholder="Email" v-model="email">
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                  <a v-on:click="exportemail" href="javascript:void(0);"><i class="fa fa-envelope-o"></i></a>
+                  </span>
+                </div>
+              </div>
+            </div>
           </b-col>
         </div>
-        <div style="float:right;">
-          <b-col class="text-center mt-2" style="padding-right: 0px; padding-left: 10px">
-            <b-button variant="secondary">
-              <i class="cui-speech"></i>
-            </b-button>
-          </b-col>
-        </div>
-        <div style="float:right;">
-          <b-col class="mt-2" style="padding-right: 0px; padding-left: 10px">
-            <b-button variant="secondary">
-              <i class="cui-chart"></i>
-            </b-button>
-          </b-col>
-        </div>
+        <!--<div style="float:right;">-->
+          <!--<b-col class="text-center mt-2" style="padding-right: 0px; padding-left: 10px">-->
+            <!--<b-button variant="secondary">-->
+              <!--<i class="cui-speech"></i>-->
+            <!--</b-button>-->
+          <!--</b-col>-->
+        <!--</div>-->
+        <!--<div style="float:right;">-->
+          <!--<b-col class="mt-2" style="padding-right: 0px; padding-left: 10px">-->
+            <!--<b-button variant="secondary">-->
+              <!--<i class="cui-chart"></i>-->
+            <!--</b-button>-->
+          <!--</b-col>-->
+        <!--</div>-->
       </span>
     </div>
     <div>
       <iframe style="width: 100%; height: 590px" :src= "url"> </iframe>
-      <iframe style=" height: 590px" :src= "url"> </iframe>
-
     </div>
   </div>
 </template>
 
 <script>
+  import db from '/Users/user/WebstormProjects/CoreUI-Vue/src/views/pages/firebaseInit.js';
+//  import VueSweetalert2 from 'vue-sweetalert2';
+//  import swal from 'sweetalert2/src/sweetalert2.js'
+//  import 'sweetalert2/src/sweetalert2.scss'
+
+
   export default {
     name: 'finishedstory',
-    data(){
+    data() {
       return {
-        header: 'David Bowie',
-        url: 'http://story.monir.media/davidbowieis'
+        header: null,
+        url: null
+      }
+    },
+    beforeRouteEnter(to, from, next) {
+      db.collection('Users').get().then
+      (querySnapshot => {
+        querySnapshot.forEach(doc => {
+          if (doc.id == to.params.story_id) {
+            next(vm => {
+              vm.header = doc.data().Title,
+                vm.url = doc.data().finishedstory
+
+              next();
+            })
+          }
+        })
+      })
+    },
+    methods: {
+      exportemail: function (e) {
+        db.collection('Users').doc('email').set({
+          email: this.email,
+          time: new Date().toJSON().slice(0, 10).replace(/-/g, '/')
+        }).then(function () {
+          window.alert("")
+        }).catch(function () {
+          console.error("Error writing document: ", error);
+        })
       }
     }
   }
+//    showAlert(){
+//      // Use sweetalret2
+//      console.log("made it here")
+//      this.$swal('We will emaili you all the assets!');
+//    }
+//  }
 </script>
 <style>
 
@@ -60,6 +107,7 @@
   img.embeddedImage {
     vertical-align: middle;
   }
+
 
   #header {
     position: relative;

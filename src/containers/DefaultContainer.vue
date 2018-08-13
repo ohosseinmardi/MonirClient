@@ -13,13 +13,19 @@
         <!--<b-nav-item class="px-3">Settings</b-nav-item>-->
       <!--</b-navbar-nav>-->
       <b-navbar-nav class="ml-auto">
-        <b-nav-item class="d-md-down-none">
-            <i class="icon-magnifier icons font-2xl d-block mt-4" style="float: left; margin: 15px"></i>
-            <p style="float: left; margin-right: 35px;margin-top: 25px;">Search...</p>
-        </b-nav-item>
-        <b-nav-item class="d-md-down-none" style="padding-right: 30px">
-          <i class="cui-bell icons font-2xl d-block mt-4"style="float: left; margin: 15px"></i>
-        </b-nav-item>
+        <!--<b-nav-item class="d-md-down-none">-->
+            <!--<i class="icon-magnifier icons font-2xl d-block mt-4" style="float: left; margin: 15px"></i>-->
+            <!--<p style="float: left; margin-right: 35px;margin-top: 25px;">Search...</p>-->
+        <!--</b-nav-item>-->
+        <!--<b-nav-item class="d-md-down-none" style="padding-right: 5px">-->
+          <!--<i class="cui-bell icons font-2xl d-block mt-4"style="float: left; margin: 15px"></i>-->
+        <!--</b-nav-item>-->
+        <!--<b-col class="text-center mt-2" style="padding-right: 10px;">-->
+          <!--<b-button v-on:click="logout" variant="secondary">-->
+            <!--Log Out-->
+          <!--</b-button>-->
+        <!--</b-col>-->
+
 
         <!--<b-nav-item class="d-md-down-none">-->
           <!--<i class="icon-list"></i>-->
@@ -32,13 +38,19 @@
       <!--<AsideToggler class="d-none d-lg-block" />-->
       <!--<AsideToggler class="d-lg-none" mobile />-->
     </AppHeader>
+
+
+
     <div class="app-body">
       <AppSidebar fixed>
         <SidebarHeader/>
         <SidebarForm/>
         <SidebarNav :navItems="nav"></SidebarNav>
+        <b-button v-on:click="logout" style="background-color: #2a4593; border-color: #2a4593; color: white">
+          Logout
+        </b-button>
         <SidebarFooter/>
-        <SidebarMinimizer/>
+        <!--<SidebarMinimizer/>-->
       </AppSidebar>
       <main class="main">
         <div class="container-fluid">
@@ -58,6 +70,7 @@ import nav from '../_nav'
 import { Header as AppHeader, SidebarToggler, Sidebar as AppSidebar, SidebarFooter, SidebarForm, SidebarHeader, SidebarMinimizer, SidebarNav, Aside as AppAside, AsideToggler, Footer as TheFooter, Breadcrumb } from '@coreui/vue'
 import DafaultAside from './DafaultAside'
 import DefaultHeaderDropdownAccnt from './DefaultHeaderDropdownAccnt'
+import firebase from 'firebase'
 
 export default {
   name: 'full',
@@ -80,6 +93,13 @@ export default {
   data () {
     return {
       nav: nav.items
+    }
+  },
+  methods: {
+    logout: function() {
+      firebase.auth().signOut().then(() => {
+        this.$router.push('/pages/login');
+      });
     }
   },
   computed: {
